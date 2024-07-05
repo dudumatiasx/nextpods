@@ -1,0 +1,146 @@
+<div class="overlay animate__animated animate__fadeIn" (click)="toggleCartMenu()"></div>
+
+  <div class="flex fixed-logo animate__animated animate__fadeInUp animate__delay-2s" style="margin-left: 12rem">
+    <div class="flex align-items-center animate__animated" data-animation="animate-fadeInRight" routerLink="/inicio">
+      <img src="/assets/bytewave.png" height="15" class="select-none" />
+    </div>
+  </div>
+
+  <div class="flex fixed-menu" style="margin-right: 10rem">
+    <div class="p-2 px-3 m-1 border-none animate__animated animate__fadeInRight animate__delay-2s">
+      <div class="flex animate__animated cursor-pointer" data-animation="animate-fadeInLeft" routerLink="/inicio">
+          <span class="text-gray-900 font-bold">Inicio</span>
+      </div>
+    </div>
+
+    <div class="p-2 px-3 m-1 border-none animate__animated animate__fadeInRight animate__delay-2s">
+        <div class="flex animate__animated cursor-pointer" data-animation="animate-fadeInLeft" routerLink="/ignite">
+            <span class="text-gray-900 font-bold">Ignite</span>
+        </div>
+    </div>
+
+    <div class="p-2 px-3 m-1 border-none animate__animated animate__fadeInRight animate__delay-2s">
+        <div class="flex animate__animated cursor-pointer" data-animation="animate-fadeInLeft">
+            <span class="text-gray-900 font-bold">Elfbar</span>
+        </div>
+    </div>
+
+    <div class="p-2 px-3 m-1 border-none animate__animated animate__fadeInRight animate__delay-2s">
+      <div class="flex animate__animated cursor-pointer" data-animation="animate-fadeInLeft">
+          <span class="text-gray-900 font-bold">Oxbar</span>
+      </div>
+    </div>
+
+    <p-button icon="icon-list" severity="warning" class="fixed-menu-button animate__animated"
+      data-animation="animate-fadeInRight2" iconPos="right" [raised]="true" size="small" (click)="toggleSubMenu()">
+    </p-button>
+    <p-card class="fixed-sub-menu pt-0 animate__animated animate__fadeIn" [style]="{ width: '8rem' }">
+      <div class="flex grid col-12 flex-column" style="margin-top: -1.5rem; margin-bottom: -1.5rem;">
+        <div class="flex col-12 cursor-pointer" routerLink="/inicio">
+            <span class="text-bluegray-900 font-bold">Todos</span>
+        </div>
+        <div class="flex col-12 cursor-pointer" routerLink="/ignite">
+            <span class="text-bluegray-900 font-bold">Ignite</span>
+        </div>
+        <div class="flex col-12 cursor-pointer" routerLink="/inicio">
+            <span class="text-bluegray-900 font-bold">Elfbar</span>
+        </div>
+        <div class="flex col-12 cursor-pointer" routerLink="/inicio">
+            <span class="text-bluegray-900 font-bold">Oxbar</span>
+        </div>
+        <div class="flex col-12 cursor-pointer" routerLink="/inicio">
+            <span class="text-bluegray-900 font-bold">LostMary</span>
+        </div>
+      </div>
+    </p-card>
+
+    <p-button icon="icon-shopping-cart" severity="success" class="fixed-cart-button animate__animated animate__fadeIn animate__delay-1s"
+      iconPos="right" [raised]="true" size="small" (click)="toggleCartMenu()">
+    </p-button>
+    <p-card class="fixed-cart-menu animate__animated animate__fadeIn" header="Carrinho" subheader="" [style]="{ width: '40rem' }">
+      <div class="flex grid mt-2" style="min-height: 10rem; max-height: 40rem;">
+        <div class="flex grid col-12 h-4rem align-items-center">
+          <div class="flex col-2 justify-content-center">
+            <img src="/assets/v80.png" height="40" class="select-none" />
+          </div>
+          <div class="flex col-5">
+            <span class="text-md mr-2">
+              Ignite V80 Strawberry Ice
+            </span>
+          </div>
+          <div class="flex col-2">
+            <span class="text-md font-bold mr-2">
+              R$ 179,90
+            </span>
+          </div>
+          <div class="flex col-2 justify-content-center">
+            <p-inputNumber
+            [(ngModel)]="value1"
+            [showButtons]="true"
+            inputId="stacked" />
+          </div>
+          <div class="flex col-1 justify-content-center">
+            <p-button icon="icon-trash" [link]="true" styleClass="w-full" />
+          </div>
+        </div>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="flex mb-4 justify-content-end text-right">
+          <span class="text-xl mr-2">
+            Total:
+          </span>
+          <span class="text-xl font-bold mr-2">
+            R$ 0,00
+          </span>
+        </div>
+        <div class="flex p-fluid">
+          <p-button label="Finalizar Compra" severity="success" class="w-full" styleClass="w-full" />
+        </div>
+      </ng-template>
+    </p-card>
+
+    <div class="fixed-contato1 animate__animated animate__fadeInDown animate__delay-2s">
+      <div class="animate__animated" data-animation="animate-fadeInUp">
+        <p-button icon="icon-user" class="animate__animated" [link]="true"
+          pTooltip="Login"
+          tooltipPosition="left"
+          placeholder="Left"
+          tooltipStyleClass="text-sm"/>
+      </div>
+    </div>
+
+    <div class="fixed-contato2 animate__animated animate__fadeInDown animate__delay-2s">
+      <div class=" animate__animated" data-animation="animate-fadeInUp">
+        <p-button icon="icon-headset" class="animate__animated align-content-center" [link]="true"
+          pTooltip="Suporte por Whatsapp"
+          tooltipPosition="left"
+          placeholder="Left"
+          tooltipStyleClass="text-sm"/>
+      </div>
+    </div>
+
+    <div class="fixed-contato3 animate__animated animate__fadeInDown animate__delay-2s">
+      <div class="animate__animated" data-animation="animate-fadeInUp">
+        <p-button icon="icon-mail" class="animate__animated" [link]="true"
+          pTooltip="Suporte por E-mail"
+          tooltipPosition="left"
+          placeholder="Left"
+          tooltipStyleClass="text-sm"/>
+      </div>
+    </div>
+
+    <div class="fixed-contato4 animate__animated animate__fadeInDown animate__delay-2s">
+      <div class="animate__animated" data-animation="animate-fadeInUp">
+        <p-button icon="icon-circle-help" class="animate__animated" [link]="true"
+          pTooltip="FAQ"
+          tooltipPosition="left"
+          placeholder="Left"
+          tooltipStyleClass="text-sm"/>
+      </div>
+    </div>
+
+    <!-- <div class="fixed-contato4 animate__animated" data-animation="animate-fadeInDown2">
+      <p-button icon="icon-chevron-down" [link]="true" (click)="toggleContato()"/>
+    </div> -->
+</div>

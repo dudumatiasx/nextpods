@@ -1,0 +1,199 @@
+.grid {
+  justify-content: center;
+}
+
+.card {
+  background: #f7f7f7;
+  border: none;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+::ng-deep .p-button.p-button-secondary,
+.p-buttonset.p-button-secondary > .p-button,
+.p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #1d1d1d;
+  border: #1d1d1d;
+}
+
+::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  order: 2;
+  border-radius: 0;
+  width: 8px;
+}
+
+@keyframes fadeInDown2 {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  opacity: 0;
+  animation: fadeInDown2 both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 30%;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp both;
+  animation-timeline: view();
+  animation-range: entry 70% cover 35%;
+}
+
+.animate-fadeInUp2 {
+  opacity: 0;
+  animation: fadeInUp both;
+  animation-timeline: view();
+  animation-range: entry 30% cover 20%;
+}
+
+.animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn both;
+  animation-timeline: view();
+  animation-range: entry 70% cover 35%;
+}
+
+.card {
+  position: relative;
+  overflow: hidden; /* Garantir que o vídeo não ultrapasse os limites do card */
+}
+
+.video-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que o vídeo preencha o card sem distorção */
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 1200px) {
+  .col-1, .col-2, .col-3, .col-4, .col-6 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .col-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .text-7xl {
+    font-size: 4rem;
+  }
+
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+
+  .text-6xl {
+    font-size: 3rem;
+  }
+
+  .text-4xl {
+    font-size: 2rem;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-1, .col-2, .col-3, .col-4, .col-6 {
+    flex-basis: 100%;
+    max-width: 60%;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .text-7xl {
+    font-size: 3rem;
+  }
+
+  .text-5xl {
+    font-size: 2rem;
+  }
+
+  .text-6xl {
+    font-size: 2.5rem;
+  }
+
+  .text-4xl {
+    font-size: 1.5rem;
+  }
+
+  .text-3xl {
+    font-size: 1.25rem;
+  }
+
+  .text-2xl {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0.5rem;
+  }
+
+  .text-7xl {
+    font-size: 2rem;
+  }
+
+  .text-5xl {
+    font-size: 1.5rem;
+  }
+
+  .text-6xl {
+    font-size: 2rem;
+  }
+
+  .text-4xl {
+    font-size: 1.25rem;
+  }
+
+  .text-3xl {
+    font-size: 1rem;
+  }
+
+  .text-2xl {
+    font-size: 0.875rem;
+  }
+}

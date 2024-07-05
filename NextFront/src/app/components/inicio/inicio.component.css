@@ -1,0 +1,174 @@
+.grid {
+  justify-content: center;
+}
+
+.card {
+  background: #f7f7f7;
+  border: none;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+::ng-deep .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #1d1d1d;
+  border:  #1d1d1d;
+}
+
+::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  order: 2;
+  border-radius: 0;
+  width: 8px;
+}
+/* Existing CSS code ... */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0.2;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp both;
+  animation-timeline: view();
+  animation-range: entry 70% cover 50%;
+}
+
+@keyframes fadeInUp2 {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+    visibility: hidden;
+  }
+}
+
+.animate-fadeInUp2 {
+  opacity: 0;
+  animation: fadeInUp2 both;
+  animation-timeline: scroll();
+  animation-range: 2vh 26vh;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  opacity: 0;
+  animation: fadeInDown both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 30%;
+}
+
+@keyframes fadeInLeft2 {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInLeft {
+  opacity: 0;
+  animation: fadeInLeft2 both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 30%;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInRight {
+  opacity: 0;
+  animation: fadeInRight both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 30%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn both;
+  animation-timeline: view();
+  animation-range: entry 70% cover 35%;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  visibility: hidden;
+  display: none;
+}
+
+::ng-deep [class^="icon-chevron"], [class*=" icon-chevron"] {
+  font-family: 'lucide' !important;
+  font-size:36px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::ng-deep .p-disabled, .p-component:disabled {
+  opacity: 1;
+}
+
+.fixed-roll{
+  position: fixed;
+  bottom: 100px;
+  right: 48%;
+  z-index: 900;
+}

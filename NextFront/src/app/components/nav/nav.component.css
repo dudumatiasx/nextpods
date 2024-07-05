@@ -1,0 +1,249 @@
+::ng-deep [class^="icon-"], [class*=" icon-"] {
+  font-family: 'lucide' !important;
+  font-size:18px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  order: 2;
+  border-radius: 0;
+  width: 8px;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(90px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 1;
+    cursor: pointer;
+  }
+  to {
+    opacity: 0;
+    cursor: default;
+  }
+}
+
+@keyframes fadeInRight2 {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDown2 {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeInLeft {
+  opacity: 0;
+  animation: fadeInLeft both;
+  animation-timeline: scroll();
+  animation-range: 15vh 30vh;
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp both;
+  animation-timeline: scroll();
+  animation-range: 15vh 30vh;
+}
+
+.animate-fadeInRight2 {
+  opacity: 0;
+  animation: fadeInRight2 both;
+  animation-timeline: scroll();
+  animation-range: 20vh 40vh;
+}
+
+.animate-fadeInDown2 {
+  opacity: 0;
+  animation: fadeInDown2 both;
+  animation-timeline: scroll();
+  animation-range: 20vh 40vh;
+}
+
+.animate-fadeInRight {
+  opacity: 0;
+  animation: fadeInRight both;
+  animation-timeline: scroll();
+  animation-range: 50vh 80vh;
+}
+
+.animate-fadeInUp2 {
+  opacity: 0;
+  animation: fadeInUp both;
+  animation-timeline: view();
+  animation-range: cover 20%;
+}
+
+.animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn both;
+  animation-timeline: view();
+  animation-range: entry 70% cover 35%;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.fixed-menu {
+  position: fixed;
+  top: 40px;
+  right: 0px;
+  z-index: 1000;
+}
+
+.fixed-logo {
+  position: fixed;
+  top: 54px;
+  left: 40px;
+  z-index: 1000;
+}
+
+.fixed-cart-button {
+  position: fixed;
+  top: 40px;
+  right: 80px;
+  z-index: 1000;
+}
+
+.fixed-cart-menu {
+  position: fixed;
+  top: 90px;
+  right: 80px;
+  z-index: 1000;
+  display: none;
+}
+
+.fixed-contato1 {
+  position: fixed;
+  top: 90px;
+  right: 80px;
+  z-index: 900;
+}
+
+.fixed-contato2 {
+  position: fixed;
+  top: 130px;
+  right: 80px;
+  z-index: 900;
+}
+
+.fixed-contato3 {
+  position: fixed;
+  top: 170px;
+  right: 80px;
+  z-index: 900;
+}
+
+.fixed-contato4 {
+  position: fixed;
+  top: 210px;
+  right: 80px;
+  z-index: 900;
+}
+
+.fixed-menu-button {
+  position: fixed;
+  top: 40px;
+  right: 130px;
+  z-index: 1000;
+}
+
+.fixed-sub-menu {
+  position: fixed;
+  top: 90px;
+  right: 130px;
+  z-index: 1000;
+  display: none;
+}
+
+::ng-deep .p-button.p-button-warning, .p-buttonset.p-button-warning > .p-button, .p-splitbutton.p-button-warning > .p-button {
+  color: #ffffff;
+  background: #000000;
+  border: 1px solid #000000;
+}
+
+::ng-deep .p-inputtext {
+  width: 3rem;
+  text-align: center;
+}
+
+::ng-deep .p-inputnumber-buttons-stacked .p-button.p-inputnumber-button-up  {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+::ng-deep .p-inputnumber-buttons-stacked .p-button.p-inputnumber-button-down {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  visibility: hidden;
+  display: none;
+}
+
+::ng-deep .p-button.p-button-link {
+  color: #000000;
+  background: transparent;
+  border: transparent;
+}
+
+::ng-deep .p-tooltip .p-tooltip-text {
+  background-color: rgb(0, 0, 0) !important;
+  color: rgb(255, 255, 255) !important;
+}
