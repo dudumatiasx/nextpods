@@ -15,13 +15,6 @@
   border:  #1d1d1d;
 }
 
-::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
-  order: 2;
-  border-radius: 0;
-  width: 8px;
-}
-/* Existing CSS code ... */
-
 @keyframes fadeInUp {
   from {
     opacity: 0.2;
@@ -37,7 +30,7 @@
   opacity: 0;
   animation: fadeInUp both;
   animation-timeline: view();
-  animation-range: entry 70% cover 50%;
+  animation-range: entry 50% cover 30%;
 }
 
 @keyframes fadeInUp2 {

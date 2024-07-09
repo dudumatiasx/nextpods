@@ -1,29 +1,16 @@
 //! Aplication Components
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
-import { LoginComponent } from './components/users/login/login.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
-import { NewProductComponent } from './components/products/new-product/new-product.component';
-import { TitlebarComponent } from './components/titlebar/titlebar.component';
-import { ProductsComponent } from './components/products/products-list/products.component';
-import { InventoryComponent } from './components/products/inventory/inventory.component';
-import { OrdersComponent } from './components/orders/orders-list/orders.component';
-import { ProfileComponent } from './components/users/profile/profile.component';
-import { CustomersComponent } from './components/customers/customers-list/customers.component';
-import { RegisterComponent } from './components/users/register/register.component';
-import { NewUserComponent } from './components/users/new-user/new-user.component';
-import { UsersComponent } from './components/users/user-list/users.component';
-import { NewOrderComponent } from './components/orders/new-order/new-order.component';
-import { NewCustomerComponent } from './components/customers/new-customer/new-customer.component';
-import { CatalogComponent } from './components/catalog/catalog.component';
-import { OrderHistoryComponent } from './components/orders/order-history/order-history.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { IgniteComponent } from './components/ignite/ignite.component';
+import { SaboresComponent } from './components/sabores/sabores.component';
 
 //! Aplication Services
 import { CustomerService } from 'src/services/customer.service';
 import { OrderService } from 'src/services/order.service';
 import { ProductService } from 'src/services/product.service';
 import { AuthService } from 'src/services/auth.service';
+import { AuthInterceptor } from 'src/services/auth.interceptor';
 
 //! Angular Modules
 import { NgModule } from '@angular/core';
@@ -74,35 +61,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { PickListModule } from 'primeng/picklist';
-import { AuthInterceptor } from 'src/services/auth.interceptor';
-import { InicioComponent } from './components/inicio/inicio.component';
-import { IgniteComponent } from './components/ignite/ignite.component';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     NavComponent,
-    LoginComponent,
-    NotfoundComponent,
-    NewProductComponent,
-    TitlebarComponent,
-    ProductsComponent,
-    InventoryComponent,
-    OrdersComponent,
-    ProfileComponent,
-    CustomersComponent,
-    UsersComponent,
-    RegisterComponent,
-    NewCustomerComponent,
-    NewUserComponent,
-    NewOrderComponent,
-    CatalogComponent,
-    OrderHistoryComponent,
     InicioComponent,
-    IgniteComponent
+    IgniteComponent,
+    SaboresComponent
    ],
   imports: [
     //! Angular Modules

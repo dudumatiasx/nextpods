@@ -1,100 +1,63 @@
 <div class="layout-main-container flex">
   <!--? Logo -->
   <div class="flex grid col-12 justify-content-center">
-    <div class="flex pb-0 col-12 justify-content-center animate__animated animate__fadeIn animate__delay-1s">
+    <div class="flex pb-0 col-12 justify-content-center animate__animated animate__fadeIn">
       <img src="/assets/ignitelogo.png" height="200" class="select-none" />
     </div>
-    <div class="flex pt-0 col-12 justify-content-center animate__animated animate__fadeIn animate__delay-1s">
+    <div class="flex pt-0 col-12 justify-content-center animate__animated animate__fadeIn">
       <img src="/assets/ignitelogo2.png" height="30" class="select-none" />
     </div>
   </div>
 
-  <!--? Linha 1 -->
-  <div class="flex grid col-12 justify-content-center px-0 pt-8 animate__animated animate__fadeIn animate__delay-2s">
+  <!--? Destaques1 -->
+  <div class="flex grid px-0 pt-8 mb-5 animate__animated animate__fadeIn">
+    <!--! V80--->
+    <div class="flex grid col-4 align-items-center justify-content-center text-left">
+      <div class="flex col-6 justify-content-start animate__animated" data-animation="animate-fadeInUp">
+        <img src="/assets/V80.png" height="280" class="select-none" />
+      </div>
+      <div class="flex col-6 flex-column">
+        <div class="animate__animated" data-animation="animate-fadeInUp">
+          <span class="text-5xl font-bold text-gray-900">IGNITE V80</span>
+        </div>
+        <div class="animate__animated" data-animation="animate-fadeInLeft">
+          <span class="text-4xl font-light text-gray-900">8000 puffs</span>
+        </div>
+        <div class="animate__animated pt-4" data-animation="animate-fadeInLeft">
+          <span class="text-1xl font-light text-green-500">R$</span>
+          <span class="text-4xl font-bold text-green-500">109,90</span>
+        </div>
+        <div class="mt-5 animate__animated" data-animation="animate-fadeIn">
+          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true"></p-button>
+        </div>
+      </div>
+    </div>
     <!--! V150-->
-    <div class="flex grid col-1"></div>
-    <div class="flex grid col-3 align-content-center justify-content-center text-center md:text-right">
-      <div class="flex col-12 flex-column">
-        <div class="animate__animated">
-          <span class="text-7xl font-bold text-gray-900">IGNITE V150</span>
+    <div class="flex grid col-4 align-items-center justify-content-center text-left">
+      <div class="flex col-6 justify-content-start animate__animated" data-animation="animate-fadeInUp">
+        <img src="/assets/v150.png" height="280" class="select-none" style="opacity: 0.6;"/>
+      </div>
+      <div class="flex col-6 flex-column">
+        <div class="animate__animated" data-animation="animate-fadeInUp">
+          <span class="text-5xl font-bold text-gray-900">IGNITE V150</span>
         </div>
-        <div class="animate__animated">
-          <span class="text-5xl font-light text-gray-900">15000 puffs</span>
+        <div class="animate__animated" data-animation="animate-fadeInLeft">
+          <span class="text-4xl font-light text-gray-900">15000 puffs</span>
         </div>
-        <div class="animate__animated pt-5">
-          <span class="text-1xl font-light text-green-500">R$</span>
-          <span class="text-6xl font-bold text-green-500">189,90</span>
+        <div class="animate__animated pt-4" data-animation="animate-fadeInLeft">
+          <span class="text-1xl font-light text-gray-500">R$</span>
+          <span class="text-4xl font-bold text-gray-500">159,90</span>
         </div>
-        <div class="mt-5 animate__animated">
-          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true"></p-button>
+        <div class="mt-5 animate__animated" data-animation="animate-fadeIn">
+          <p-button label="Esgotado" iconPos="right" severity="secondary" [disabled]="true" [raised]="true"></p-button>
         </div>
       </div>
     </div>
-    <!--! Imagem-->
-    <div class="flex grid col-3 align-items-center justify-content-center">
-      <img src="/assets/icymint.png" height="350" class="select-none" />
-    </div>
-    <!--! Video-->
-    <div class="flex grid col-4 align-content-center justify-content-end text-right">
-      <div class="flex card col-12 h-22rem flex-column justify-content-start">
-        <video class="video-card" loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true" style="left: -12%; width: 120%">
-          <source src="/assets/v150.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-
-  <!--? Linha 2 -->
-  <div class="flex grid col-12 justify-content-center px-0 pt-2 animate__animated animate__fadeIn animate__delay-2s">
-    <!--! Imagem-->
-    <div class="flex grid col-3 align-items-center justify-content-center">
-      <img src="/assets/v80.png" height="350" class="select-none" />
-    </div>
-    <!--! Texto -->
-    <div class="flex grid col-3 align-content-center justify-content-center text-center md:text-right">
-      <div class="flex col-12 flex-column">
-        <div class="animate__animated">
-          <span class="text-7xl font-bold text-gray-900">IGNITE V80</span>
-        </div>
-        <div class="animate__animated">
-          <span class="text-5xl font-light text-gray-900">8000 puffs</span>
-        </div>
-        <div class="animate__animated pt-5">
-          <span class="text-1xl font-light text-green-500">R$</span>
-          <span class="text-6xl font-bold text-green-500">109,90</span>
-        </div>
-        <div class="mt-5 animate__animated">
-          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true"></p-button>
-        </div>
-      </div>
-    </div>
-    <!--! Video -->
-    <div class="flex grid col-2 pr-2 md:pr-5 align-content-center justify-content-center md:justify-content-end">
-      <div class="flex card col-9 h-20rem ">
-        <video class="video-card" loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true" style="width: 110%;">
-          <source src="/assets/v80.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-    <!--! Texto -->
-    <div class="flex grid col-2 align-content-evenly justify-content-center">
-      <div class="flex col-12 flex-column justify-content-center text-left animate__animated animate__fadeInDown animate__delay-3s">
-        <span class="text-2xl font-normal text-gray-900">A MARCA</span>
-        <span class="text-4xl font-bold text-green-500">DESEJADA</span>
-        <span class="text-2xl font-normal text-gray-900">POR</span>
-        <span class="text-2xl font-normal text-gray-900">TODOS</span>
-      </div>
-      <div class="flex col-12 mt-2 flex-column justify-content-center text-left animate__animated animate__fadeInUp animate__delay-4s">
-        <span class="text-2xl font-normal text-gray-900">A ESCOLHA</span>
-        <span class="text-4xl font-bold text-green-500">PERFEITA</span>
-        <span class="text-2xl font-normal text-gray-900">PARA VOCÊ</span>
-      </div>
-    </div>
+    <p-divider class="flex col-12"></p-divider>
   </div>
 
   <!--? Hero 1 -->
-  <div class="flex grid col-12 mt-2 justify-content-around animate__animated z-0" data-animation="animate-fadeInDown">
+  <div class="flex grid col-12 mt-2 justify-content-around animate__animated animate__fadeIn">
     <!--! Col 1 --->
     <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
       <div class="flex col-12 justify-content-center cursor-pointer">

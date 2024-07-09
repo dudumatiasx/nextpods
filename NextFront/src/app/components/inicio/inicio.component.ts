@@ -6,22 +6,9 @@ import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit, AfterViewInit {
-  value1: number = 0;
-  value2: number = 0;
-  value3: number = 0;
-  value4: number = 0;
-  value5: number = 0;
-  value6: number = 0;
-  value7: number = 0;
-  value8: number = 0;
-  value9: number = 0;
-  value10: number = 0;
-  value11: number = 0;
-  value12: number = 0;
-  value13: number = 0;
-  value14: number = 0;
 
-  visible: boolean = false;
+  visibleV80: boolean = false;
+  visibleV150: boolean = false;
 
   constructor(private el: ElementRef) {}
 
@@ -58,7 +45,11 @@ export class InicioComponent implements OnInit, AfterViewInit {
     });
   }
 
-  showDialog() {
-    this.visible = true;
+  showV80() {
+    this.visibleV80 = true;
+  }
+
+  showV150() {
+    this.visibleV150 = true;
   }
 }

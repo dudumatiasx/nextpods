@@ -58,6 +58,7 @@
       iconPos="right" [raised]="true" size="small" (click)="toggleCartMenu()">
     </p-button>
     <p-card class="fixed-cart-menu animate__animated animate__fadeIn" header="Carrinho" subheader="" [style]="{ width: '40rem' }">
+      <app-sabores [sabor]="'Banana Cherry'" [img]="'/assets/bananacherry.png'" [favorito]="true"></app-sabores>
       <div class="flex grid mt-2" style="min-height: 10rem; max-height: 40rem;">
         <div class="flex grid col-12 h-4rem align-items-center">
           <div class="flex col-2 justify-content-center">
@@ -121,16 +122,6 @@
     </div>
 
     <div class="fixed-contato3 animate__animated animate__fadeInDown animate__delay-2s">
-      <div class="animate__animated" data-animation="animate-fadeInUp">
-        <p-button icon="icon-mail" class="animate__animated" [link]="true"
-          pTooltip="Suporte por E-mail"
-          tooltipPosition="left"
-          placeholder="Left"
-          tooltipStyleClass="text-sm"/>
-      </div>
-    </div>
-
-    <div class="fixed-contato4 animate__animated animate__fadeInDown animate__delay-2s">
       <div class="animate__animated" data-animation="animate-fadeInUp">
         <p-button icon="icon-circle-help" class="animate__animated" [link]="true"
           pTooltip="FAQ"
