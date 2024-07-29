@@ -6,19 +6,27 @@
     <span class="text-md font-semibold text-gray-800 mr-1">
       {{sabor}}
     </span>
-    <span class="text-sm font-normal text-green-500" *ngIf="favorito">
-      Recomendado
+  </div>
+  <div class="flex flex-column col-4 align-items-center">
+    <p-inputNumber styleClass="inputOnDataTable"
+      [min]="0"
+      [max]="qt"
+      [(ngModel)]="value"
+      [style]="{'width': '9rem'}"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      decrementButtonClass="p-button-secondary2"
+      incrementButtonClass="p-button-secondary2"
+      incrementButtonIcon="pi pi-plus text-sm"
+      decrementButtonIcon="pi pi-minus text-sm"
+      (ngModelChange)="onQuantityChange()"
+    />
+    <span class="text-sm mt-1 font-bold text-orange-500" *ngIf="qt <= 3 && qt > 1">
+      {{qt}} unidades restantes!
+    </span>
+    <span class="text-sm mt-1 font-bold text-red-500" *ngIf="qt == 1">
+      Última unidade!
     </span>
   </div>
-  <p-inputNumber styleClass="inputOnDataTable"
-    [min]="0"
-    [(ngModel)]="value"
-    [style]="{'width': '9rem'}"
-    [showButtons]="true"
-    buttonLayout="horizontal"
-    decrementButtonClass="p-button-secondary"
-    incrementButtonClass="p-button-secondary"
-    incrementButtonIcon="pi pi-plus text-sm"
-    decrementButtonIcon="pi pi-minus text-sm" />
 </div>
 <p-divider></p-divider>

@@ -1,0 +1,93 @@
+<div class="bg-cover h-screen flex justify-content-center align-items-center"
+  style="background-image: url('assets/images/bg-login.svg');">
+
+  <div class="flex grid col-12 justify-content-center" style="padding-top: 2rem;">
+    <div class="flex grid card col:8 lg:col-6 xl:col-4" style="border-top-right-radius: 0%; border-bottom-right-radius: 0%;">
+      <div class="grid flex-wrap gap-3 p-fluid">
+        <div class="col-12">
+          <div class="grid formgrid">
+            <div class="col-12 pb-5 flex grid justify-content-between align-items-center">
+              <div class="flex col-4">
+                <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary2" size="small" routerLink="/inicio"></p-button>
+              </div>
+              <div class="flex col-8"><img src="/assets/bytewave.png" height="18" class="select-none" /></div>
+            </div>
+            <div class="col-12 field">
+              <label for="nome" class="font-medium text-900">Nome Completo</label>
+              <input id="nome" pInputText type="text"  />
+            </div>
+            <div class="col-12 field">
+              <label for="telefone" class="font-medium text-900">Telefone</label>
+              <p-inputMask id="telefone" mask="(99) 99999-9999" placeholder="(00) 00000-0000" />
+            </div>
+          </div>
+          <!-- <p-divider></p-divider> -->
+          <div class="grid formgrid">
+            <div class="col-12 bg-yellow-100 field py-2">
+              <span class="text-md">
+                <span class="text-md font-bold">AVISO:</span> No momento estamos entregando somente em <span class="text-md font-bold">Caxias do Sul e região.</span><br><br>
+                Em breve estaremos atendendo todas cidades do Brasil, acompanhe nosso Instagram para ficar por dentro.
+              </span>
+            </div>
+            <div class="col-12 mt-1 field">
+              <label for="cep" class="font-medium text-900">CEP</label>
+              <p-inputMask id="cep" mask="99999-999" placeholder="00000-000" />
+            </div>
+            <div class="col-12 field">
+              <label for="rua" class="font-medium text-900">Rua e número</label>
+              <input id="rua" pInputText type="text"  />
+            </div>
+            <div class="col-12 field">
+              <label for="endereço" class="font-medium text-900">Apartamento, bloco, etc.</label>
+              <input id="endereço" pInputText type="text" />
+            </div>
+            <div class="col-12 xl:col-6 field">
+              <label for="cidade" class="font-medium text-500">Cidade</label>
+              <input id="cidade" pInputText type="text" placeholder="Caxias do Sul" [disabled]="true" />
+            </div>
+            <div class="col-12 xl:col-6 field">
+              <label for="estado" class="font-medium text-500">Estado</label>
+              <input id="estado" pInputText type="text" placeholder="Rio Grande do Sul" [disabled]="true" />
+              <!-- <p-dropdown
+                [options]="cities"
+                [(ngModel)]="selectedCity"
+                optionLabel="name"
+                placeholder="Rio Grande do Sul"
+                [disabled]="true"/> -->
+            </div>
+          </div>
+          <div class="grid formgrid pt-4 px-2">
+            <p-button label="Ir para pagamento" severity="success" class="w-full" styleClass="w-full" routerLink="/pagamento" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid flex-wrap card col:8 lg:col-6 xl:col-4 align-content-start hidden lg:block"
+         style="border-left: none; border-top-left-radius: 0%; border-bottom-left-radius: 0%; background-color: #f2f2f2 ;">
+      <div *ngFor="let item of cartItems" class="flex h-4rem col-12 align-items-center">
+        <div class="flex col-1 justify-content-center">
+          <img [src]="item.img" height="40" class="select-none" />
+        </div>
+        <div class="flex col-9">
+          <span class="text-md mr-2">
+            {{ item.quantity }}x {{ item.modelo }} - {{ item.sabor }}
+          </span>
+        </div>
+        <div class="flex col-2">
+          <span class="text-md font-bold mr-2">
+            {{ item.preco*item.quantity | currency:'BRL' }}
+          </span>
+        </div>
+      </div>
+      <p-divider class="flex col-12"></p-divider>
+      <div class="flex col-12 align-items-end justify-content-between text-right px-3">
+        <span class="text-xl mr-2">
+          Total
+        </span>
+        <span class="text-xl font-bold mr-2">
+          {{ getTotal() | currency:'BRL' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

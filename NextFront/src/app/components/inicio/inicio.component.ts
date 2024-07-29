@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { ProductService } from 'src/services/product.service';
+import { CartService } from 'src/services/cart.service';
 
 @Component({
   selector: 'app-inicio',
@@ -6,16 +8,24 @@ import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit, AfterViewInit {
+  visible: boolean = false;
+  selectedProduct: any = null;
+  products: any[] = [];
+  selectedProductId: string = '';
+  selectedQuantities: { [key: string]: number } = {};
 
-  visibleV80: boolean = false;
-  visibleV150: boolean = false;
+  constructor(private el: ElementRef, private productService: ProductService, private cartService: CartService) {}
 
-  constructor(private el: ElementRef) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadProducts();
+  }
 
   ngAfterViewInit(): void {
     this.setupIntersectionObserver();
+  }
+
+  onDialogHide(): void {
+    this.selectedProduct = null;
   }
 
   setupIntersectionObserver(): void {
@@ -45,11 +55,47 @@ export class InicioComponent implements OnInit, AfterViewInit {
     });
   }
 
-  showV80() {
-    this.visibleV80 = true;
+  showDialog(productId: string) {
+    this.visible = true;
+    this.loadProduct(productId);
   }
 
-  showV150() {
-    this.visibleV150 = true;
+  loadProducts() {
+    this.productService.getProducts().subscribe((data: any[]) => {
+      this.products = data;
+    });
+  }
+
+  loadProduct(productId: string) {
+    this.productService.getProductById(productId).subscribe((data: any) => {
+      this.selectedProduct = data;
+      this.selectedQuantities = {};
+    });
+  }
+
+  getKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  onQuantityChanged(event: any, sabor: string) {
+    this.selectedQuantities[sabor] = event.value;
+  }
+
+  addToCart() {
+    const itemsToAdd = [];
+    for (const sabor in this.selectedQuantities) {
+      if (this.selectedQuantities[sabor] > 0) {
+        itemsToAdd.push({
+          productId: this.selectedProduct.id,
+          sabor: sabor,
+          quantity: this.selectedQuantities[sabor],
+          img: `/assets/${sabor.toLowerCase().replace(' ', '')}.png`,
+          modelo: this.selectedProduct.modelo,
+          preco: this.selectedProduct.preco
+        });
+      }
+    }
+    this.cartService.addItemsToCart(itemsToAdd);
+    this.visible = false;
   }
 }

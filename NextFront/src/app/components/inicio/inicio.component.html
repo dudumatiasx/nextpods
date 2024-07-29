@@ -1,4 +1,5 @@
 <!--! Banner -->
+
 <div class="flex">
   <!--? Texto -->
   <div class="absolute right-0" style="margin-right: 20rem; top: 40%;">
@@ -38,47 +39,31 @@
 <!--! MAIN -->
 <div class="layout-main-container flex">
 
-  <!--? DialogV80 -->
-  <p-dialog header="Escolher Sabores" [modal]="true" [(visible)]="visibleV80" [style]="{ width: '40rem' }">
+  <!--? Dialog -->
+  <p-dialog header="Escolher Sabores" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }" (onHide)="onDialogHide()">
     <span class="p-text-secondary block mb-5">Escolha a quantidade de cada sabor desejado e adicione ao carrinho.</span>
     <p-divider></p-divider>
-    <app-sabores [sabor]="'Banana Cherry'" [img]="'/assets/bananacherry.png'" [favorito]="true"></app-sabores>
-    <app-sabores [sabor]="'Banana Ice'" [img]="'/assets/banana.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Blueberry Ice'" [img]="'/assets/blueberryice.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Blueberry Lemon'" [img]="'/assets/blueberrylemon.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Cactus'" [img]="'/assets/cactus.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Grape Ice'" [img]="'/assets/grapeice.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Grapefriut Mint'" [img]="'/assets/grapefruitmint.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Green Apple'" [img]="'/assets/greenapple.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Icy Mint'" [img]="'/assets/icymint.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Menthol'" [img]="'/assets/menthol.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Passion Fruit Sour Kiwi'" [img]="'/assets/passion.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Strawberry Ice'" [img]="'/assets/strawberryice.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Strawberry Kiwi'" [img]="'/assets/strawberrykiwi.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Watermelon Ice'" [img]="'/assets/watermelonice.png'" [favorito]="false"></app-sabores>
-    <ng-template pTemplate="footer">
-    <div class="flex justify-content-end mt-4">
-        <p-button label="Adicionar ao Carrinho" severity="success" (click)="visibleV80 = false" />
+    <div *ngIf="selectedProduct">
+      <div *ngFor="let saborKey of getKeys(selectedProduct.sabores)">
+        <div *ngIf="selectedProduct.sabores[saborKey].quantidade > 0">
+          <app-sabores
+            [sabor]="selectedProduct.sabores[saborKey].nome"
+            [qt]="selectedProduct.sabores[saborKey].quantidade"
+            [img]="'/assets/' + selectedProduct.sabores[saborKey].nome.toLowerCase().replace(' ', '') + '.png'"
+            [favorito]="false"
+            (quantityChanged)="onQuantityChanged($event, selectedProduct.sabores[saborKey].nome)">
+          </app-sabores>
+        </div>
+      </div>
     </div>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-end mt-4">
+        <p-button label="Adicionar ao Carrinho" severity="success" (click)="addToCart()" />
+      </div>
     </ng-template>
   </p-dialog>
 
-  <!--? DialogV150 -->
-  <p-dialog header="Escolher Sabores" [modal]="true" [(visible)]="visibleV150" [style]="{ width: '40rem' }">
-    <span class="p-text-secondary block mb-5">Escolha a quantidade de cada sabor desejado e adicione ao carrinho.</span>
-    <p-divider></p-divider>
-    <app-sabores [sabor]="'Banana Cherry'" [img]="'/assets/bananacherry.png'" [favorito]="true"></app-sabores>
-    <app-sabores [sabor]="'Banana Ice'" [img]="'/assets/banana.png'" [favorito]="false"></app-sabores>
-    <app-sabores [sabor]="'Blueberry Ice'" [img]="'/assets/blueberryice.png'" [favorito]="true"></app-sabores>
-    <app-sabores [sabor]="'Blueberry Lemon'" [img]="'/assets/blueberrylemon.png'" [favorito]="true"></app-sabores>
-    <ng-template pTemplate="footer">
-    <div class="flex justify-content-end mt-4">
-        <p-button label="Adicionar ao Carrinho" severity="success" (click)="visibleV150 = false" />
-    </div>
-    </ng-template>
-  </p-dialog>
-
-  <!--? Destaques1 -->
+  <!--? Mais Vendidos -->
   <div class="flex grid px-0 pt-8 mb-5 animate__animated" data-animation="animate-fadeIn">
     <div class="flex grid col-12 justify-content-start text-left">
       <span class="text-3xl font-bold text-gray-900">
@@ -86,7 +71,7 @@
       </span>
     </div>
     <p-divider class="flex col-12"></p-divider>
-    <!--! V80--->
+    <!--! V80 --->
     <div class="flex grid col-4 align-items-center justify-content-center text-left">
       <div class="flex col-6 justify-content-start animate__animated" data-animation="animate-fadeInUp">
         <img src="/assets/V80.png" height="280" class="select-none" />
@@ -99,15 +84,17 @@
           <span class="text-4xl font-light text-gray-900">8000 puffs</span>
         </div>
         <div class="animate__animated pt-4" data-animation="animate-fadeInLeft">
+          <span class="text-sm font-bold text-gray-500 align-self-center"><s>R$ 129,90</s></span><br>
           <span class="text-1xl font-light text-green-500">R$</span>
-          <span class="text-4xl font-bold text-green-500">109,90</span>
+          <span class="text-4xl font-bold text-green-500">109,90
+          </span>
         </div>
         <div class="mt-5 animate__animated" data-animation="animate-fadeIn">
-          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true" (click)="showV80()"></p-button>
+          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true" (click)="showDialog('668c68cbb27af4498655c953')"></p-button>
         </div>
       </div>
     </div>
-    <!--! V150-->
+    <!--! LOSTMARY -->
     <div class="flex grid col-4 align-items-center justify-content-center text-left">
       <div class="flex col-6 justify-content-start animate__animated" data-animation="animate-fadeInUp">
         <img src="/assets/LostMary.png" height="280" class="select-none" />
@@ -124,43 +111,35 @@
           <span class="text-4xl font-bold text-green-500">89,90</span>
         </div>
         <div class="mt-5 animate__animated" data-animation="animate-fadeIn">
-          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true" (click)="showV150()"></p-button>
+          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true"></p-button>
         </div>
       </div>
     </div>
-    <!--! ELFBAR--->
+    <!--! OXBAR --->
     <div class="flex grid col-4 align-items-center justify-content-center text-left">
       <div class="flex col-6 justify-content-start animate__animated" data-animation="animate-fadeInUp">
         <img src="/assets/Oxbar.png" height="280" class="select-none" />
       </div>
       <div class="flex col-6 flex-column">
         <div class="animate__animated" data-animation="animate-fadeInUp">
-          <span class="text-5xl font-bold text-gray-900">OXBAR</span>
+          <span class="text-5xl font-bold text-gray-900">OXBAR G8</span>
         </div>
         <div class="animate__animated" data-animation="animate-fadeInLeft">
           <span class="text-4xl font-light text-gray-900">8000 puffs</span>
         </div>
         <div class="animate__animated pt-4" data-animation="animate-fadeInLeft">
           <span class="text-1xl font-light text-green-500">R$</span>
-          <span class="text-4xl font-bold text-green-500">89,90</span>
+          <span class="text-4xl font-bold text-green-500">99,90</span>
         </div>
         <div class="mt-5 animate__animated" data-animation="animate-fadeIn">
-          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true"></p-button>
+          <p-button label="Escolher Sabores" iconPos="right" severity="secondary" [raised]="true" (click)="showDialog('668cb0b3d3fa034e5b5d6c61')"></p-button>
         </div>
       </div>
     </div>
   </div>
   <p-divider></p-divider>
 
-  <!--? Banner Promo -->
-  <div class="flex grid col-12 mt-3 justify-content-around">
-    <div class="flex card grid col-12 p-0" style="height: 17rem">
-      <img src="/assets/bannerdesconto.png" height="100%"/>
-    </div>
-    <!-- <div class="absolute mt" style="margin-top: 15rem; margin-left: 58rem;">
-      <p-button label="Aproveitar Desconto" iconPos="right" severity="secondary" class="shadow-3" [raised]="true"></p-button>
-    </div> -->
-  </div>
+
 
   <!--? Hero1 -->
   <div class="flex grid col-12 justify-content-around mt-5">
@@ -175,12 +154,11 @@
       <div class="flex col-12 justify-content-center cursor-pointer">
         <img src="/assets/V80.png" height="200" class="select-none" />
       </div>
-
       <div class="flex grid col-12 align-items-end justify-content-between px-3">
         <div class="flex grid flex-column justify-content-start col-9 cursor-pointer">
           <div class="flex p-2 p-fluid card absolute bg-green-500" style="height: 2rem; width: fit-content; right: 8%; top: 7%">
             <span class="text-sm font-bold text-white">
-              R$20,00 OFF
+              -R$20,00
             </span>
           </div>
           <div class="flex col-12 p-0 justify-content-start">
@@ -198,7 +176,7 @@
           </div>
         </div>
         <div class="flex col-2">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
+          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true" (click)="showDialog('668c68cbb27af4498655c953')"></p-button>
         </div>
       </div>
     </div>
@@ -223,21 +201,14 @@
           </div>
           <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
             <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">109,90</span>
+              R$<span class="text-xl font-bold text-green-500 align-self-end">99,90</span>
             </span>
           </div>
         </div>
         <div class="flex col-2">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"
-            pTooltip="Escolher Sabor"
-            tooltipPosition="top"
-            placeholder="Left"
-            tooltipStyleClass="text-sm"
-            [showDelay]="1000">
-          </p-button>
+          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true" (click)="showDialog('668cb0b3d3fa034e5b5d6c61')"></p-button>
         </div>
       </div>
-
     </div>
     <!--! Col 4 --->
     <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
@@ -260,7 +231,7 @@
           </div>
           <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
             <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">109,90</span>
+              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
             </span>
           </div>
         </div>
@@ -268,25 +239,23 @@
           <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
         </div>
       </div>
-
     </div>
     <!--! Col 5 --->
     <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
       <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/Funky.png" height="200" class="select-none" />
+        <img src="/assets/bc10k.png" height="200" class="select-none" />
       </div>
-
       <div class="flex grid col-12 align-items-end justify-content-between px-3">
         <div class="flex grid flex-column justify-content-start col-9 cursor-pointer">
           <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">FUNKY REPUBLIC</span>
+            <span class="text-lg font-bold text-gray-800">ELFBAR BC10</span>
           </div>
           <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">7000 puffs</span>
+            <span class="text-md font-light text-gray-800">10000 puffs</span>
           </div>
           <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
             <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
+              R$<span class="text-xl font-bold text-green-500 align-self-end">99,90</span>
             </span>
           </div>
         </div>
@@ -332,7 +301,7 @@
     <!--! Col 2 --->
     <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
       <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/bc10k.png" height="200" class="select-none" style="opacity: 0.6;" />
+        <img src="/assets/Funky.png" height="200" class="select-none" style="opacity: 0.6;" />
       </div>
 
       <div class="flex grid col-12 align-items-end justify-content-between px-3">
@@ -343,14 +312,14 @@
             </span>
           </div>
           <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">ELFBAR BC 10K</span>
+            <span class="text-lg font-bold text-gray-800">FUNKY REPUBLIC</span>
           </div>
           <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">10000 puffs</span>
+            <span class="text-md font-light text-gray-800">7000 puffs</span>
           </div>
           <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
             <span class="text-sm font-light text-gray-500">R$</span>
-            <span class="text-xl font-bold text-gray-500">99,90</span>
+            <span class="text-xl font-bold text-gray-500">79,90</span>
           </div>
         </div>
         <div class="flex col-2">
@@ -394,115 +363,11 @@
 
     <!--! Col 4 --->
     <div class="flex card grid col-2 h-28rem align-content-between" style="width: 43.1rem;">
-      <video class="video-card" loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true">
+      <video class="video-card" loop muted autoplay oncanplay="this.play()"onloadedmetadata="this.muted = true" style="height: 120%;">
           <source src="/assets/v150.mp4" type="video/mp4">
       </video>
     </div>
   </div>
 
-  <!--? Hero3 -->
-  <!-- <div class="flex grid col-12 mt-2 justify-content-around">
-
-    <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
-      <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/ew9k.png" height="200" class="select-none" />
-      </div>
-
-      <div class="flex grid col-12 align-items-end justify-content-between px-3">
-        <div class="flex grid flex-column justify-content-start col-8 cursor-pointer">
-          <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">ELFBAR EW</span>
-          </div>
-          <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">18000 puffs</span>
-          </div>
-          <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
-            <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
-            </span>
-          </div>
-        </div>
-        <div class="flex col-2">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="flex card grid col-2 h-28rem align-content-between" style="width: 43.1rem;">
-      <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/bc5k.png" height="220" class="select-none" />
-      </div>
-
-      <div class="flex grid col-12 align-items-end justify-content-between px-3">
-        <div class="flex grid flex-column justify-content-start col-6 cursor-pointer">
-          <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">ELFBAR BC5000 5 PACK</span>
-          </div>
-          <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">5000 puffs</span>
-          </div>
-          <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
-            <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
-            </span>
-          </div>
-        </div>
-        <div class="flex col-2 justify-content-end">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
-      <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/bc10k.png" height="200" class="select-none" />
-      </div>
-
-      <div class="flex grid col-12 align-items-end justify-content-between px-3">
-        <div class="flex grid flex-column justify-content-start col-9 cursor-pointer">
-          <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">ELFBAR BC10000</span>
-          </div>
-          <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">10000 puffs</span>
-          </div>
-          <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
-            <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
-            </span>
-          </div>
-        </div>
-        <div class="flex col-2">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex card grid col-2 h-28rem w-21rem align-content-between">
-      <div class="flex col-12 justify-content-center cursor-pointer">
-        <img src="/assets/bc10k.png" height="200" class="select-none" />
-      </div>
-
-      <div class="flex grid col-12 align-items-end justify-content-between px-3">
-        <div class="flex grid flex-column justify-content-start col-9 cursor-pointer">
-          <div class="flex col-12 p-0 justify-content-start">
-            <span class="text-lg font-bold text-gray-800">ELFBAR BC10000</span>
-          </div>
-          <div class="flex col-12 p-0 justify-content-start pt-0">
-            <span class="text-md font-light text-gray-800">10000 puffs</span>
-          </div>
-          <div class="flex col-12 p-0 pt-2 justify-content-start align-items-end">
-            <span class="text-sm font-light text-green-500 align-self-end">
-              R$<span class="text-xl font-bold text-green-500 align-self-end">89,90</span>
-            </span>
-          </div>
-        </div>
-        <div class="flex col-2">
-          <p-button icon="icon-shopping-cart" iconPos="right" severity="secondary" size="small" [raised]="true"></p-button>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 </div>

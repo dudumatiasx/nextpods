@@ -1,0 +1,9 @@
+::ng-deep .p-selectbutton .p-button.p-highlight {
+  background: #252525;
+  border-color: #252525;
+  color: #ffffff;
+}
+::ng-deep .p-button:focus {
+  box-shadow: none;
+}
+

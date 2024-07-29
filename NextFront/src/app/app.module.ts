@@ -4,6 +4,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { IgniteComponent } from './components/ignite/ignite.component';
 import { SaboresComponent } from './components/sabores/sabores.component';
+import { FinalizarComponent } from './components/finalizar/finalizar.component';
 
 //! Aplication Services
 import { CustomerService } from 'src/services/customer.service';
@@ -63,6 +64,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PickListModule } from 'primeng/picklist';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { CardModule } from 'primeng/card';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,9 @@ import { CardModule } from 'primeng/card';
     NavComponent,
     InicioComponent,
     IgniteComponent,
-    SaboresComponent
+    SaboresComponent,
+    FinalizarComponent,
+    PagamentoComponent
    ],
   imports: [
     //! Angular Modules
@@ -122,7 +127,8 @@ import { CardModule } from 'primeng/card';
     SidebarModule,
     PickListModule,
     AnimateOnScrollModule,
-    CardModule
+    CardModule,
+    ListboxModule
   ],
   providers: [
     CustomerService,

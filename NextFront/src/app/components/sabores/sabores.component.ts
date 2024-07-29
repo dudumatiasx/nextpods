@@ -1,15 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy  } from '@angular/core';
 
 @Component({
   selector: 'app-sabores',
   templateUrl: './sabores.component.html',
   styleUrls: ['./sabores.component.css']
 })
-export class SaboresComponent implements OnInit {
+export class SaboresComponent implements OnInit, OnDestroy {
 
   @Input() sabor = 'Sabor';
+  @Input() qt = 0;
   @Input() favorito = true;
   @Input() img = '';
+  @Output() quantityChanged = new EventEmitter<{ value: number }>();
 
   value = 0;
 
@@ -18,4 +20,11 @@ export class SaboresComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy(): void {
+    this.value = 0;
+  }
+
+  onQuantityChange() {
+    this.quantityChanged.emit({ value: this.value });
+  }
 }

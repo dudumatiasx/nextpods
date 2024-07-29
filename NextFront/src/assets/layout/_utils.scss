@@ -74,3 +74,14 @@
 }
 
 
+.p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #1d1d1d;
+  border:  #1d1d1d;
+}
+
+.p-button.p-button-secondary2 {
+  color: #000000;
+  background: #ffffff;
+  border: 1px solid #ced4da;
+}

@@ -1,9 +1,5 @@
 import { Component, ElementRef, OnInit, AfterViewInit, Renderer2, HostListener } from '@angular/core';
-
-interface City {
-  name: string;
-  code: string;
-}
+import { CartService } from 'src/services/cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,17 +9,24 @@ interface City {
 export class NavComponent implements OnInit {
 
   isVisible: boolean = false;
-
   isVisible2: boolean = false;
 
-  value1 = 0;
+  cartItems: any[] = [];
 
-  constructor(private renderer: Renderer2,private el: ElementRef) {}
+  constructor(private renderer: Renderer2, private el: ElementRef, private cartService: CartService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cartService.getCartItems().subscribe((items: any[]) => {
+      this.cartItems = items;
+    });
+  }
 
   ngAfterViewInit(): void {
     this.setupIntersectionObserver();
+  }
+
+  removeItem(item: any) {
+    this.cartService.removeItem(item);
   }
 
   setupIntersectionObserver(): void {
@@ -86,53 +89,14 @@ export class NavComponent implements OnInit {
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const cartMenu = this.el.nativeElement.querySelector('.fixed-cart-menu');
-    const subMenu = this.el.nativeElement.querySelector('.fixed-sub-menu');
-    const menuButton = this.el.nativeElement.querySelector('.fixed-menu-button');
-    const overlay = this.el.nativeElement.querySelector('.overlay');
-    const cartButton = this.el.nativeElement.querySelector('.fixed-cart-button');
-    const contato4 = this.el.nativeElement.querySelector('.fixed-contato4');
-    const contato5 = this.el.nativeElement.querySelector('.fixed-contato5');
-    const contato6 = this.el.nativeElement.querySelector('.fixed-contato6');
-    const contato7 = this.el.nativeElement.querySelector('.fixed-contato7');
-    if (this.isVisible && cartMenu && !cartMenu.contains(event.target as Node) && !cartButton.contains(event.target as Node)) {
-      this.renderer.setStyle(cartMenu, 'visibility', 'hidden');
-      this.renderer.setStyle(cartMenu, 'display', 'none');
-      this.renderer.setStyle(overlay, 'visibility', 'hidden');
-      this.renderer.setStyle(overlay, 'display', 'none');
-      this.isVisible = false;
-    }
-    if (this.isVisible2 && subMenu && !subMenu.contains(event.target as Node) && !menuButton.contains(event.target as Node)) {
-      this.renderer.setStyle(subMenu, 'visibility', 'hidden');
-      this.renderer.setStyle(subMenu, 'display', 'none');
-      this.isVisible2 = false;
-    }
-    if (contato4 && contato4.contains(event.target as Node)) {
-      this.renderer.addClass(contato5, 'visible');
-      this.renderer.addClass(contato6, 'visible');
-      this.renderer.addClass(contato7, 'visible');
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    if (this.isVisible) {
+      this.toggleCartMenu();
     }
   }
 
-  @HostListener('window:scroll', [])
-  onWindowScroll(): void {
-    const cartMenu = this.el.nativeElement.querySelector('.fixed-cart-menu');
-    const overlay = this.el.nativeElement.querySelector('.overlay');
-    const subMenu = this.el.nativeElement.querySelector('.fixed-sub-menu');
-    if (this.isVisible && cartMenu) {
-      this.renderer.setStyle(cartMenu, 'visibility', 'hidden');
-      this.renderer.setStyle(cartMenu, 'display', 'none');
-      this.renderer.setStyle(overlay, 'visibility', 'hidden');
-      this.renderer.setStyle(overlay, 'display', 'none');
-      this.isVisible = false;
-    }
-    if (this.isVisible2 && subMenu) {
-      this.renderer.setStyle(subMenu, 'visibility', 'hidden');
-      this.renderer.setStyle(subMenu, 'display', 'none');
-      this.isVisible2 = false;
-    }
-
+  getTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
   }
 }

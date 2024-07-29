@@ -1,0 +1,64 @@
+<div class="bg-cover h-screen flex justify-content-center align-items-center"
+  style="background-image: url('assets/images/bg-login.svg');">
+
+  <div class="flex grid col-12 justify-content-center" style="padding-top: 2rem;">
+    <div class="flex grid card col:8 lg:col-6 xl:col-4">
+      <div class="grid flex-wrap col-12 gap-3 p-fluid">
+        <div class="col-12">
+          <div class="grid formgrid">
+            <div class="col-12 pb-5 flex grid justify-content-between align-items-center">
+              <div class="flex col-4">
+                <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary2" size="small" routerLink="/checkout"></p-button>
+              </div>
+              <div class="flex col-8"><img src="/assets/bytewave.png" height="18" class="select-none" /></div>
+            </div>
+            <div class="col-12 field">
+              <label for="entrega" class="font-medium text-900 mb-3">Forma de Entrega</label>
+              <p-selectButton
+                [options]="entrega"
+                optionLabel="label"
+                optionValue="value"
+                [(ngModel)]="selectedEntrega" />
+            </div>
+            <div class="col-12 bg-green-100 field p-2" *ngIf="selectedEntrega === 'E'">
+              <span class="text-md">
+                Entrega no endereço gera um valor adicional de <span class="text-md font-bold">R$ 10,00.</span>
+              </span>
+            </div>
+            <div class="col-12 field mt-3">
+              <label for="pagamento" class="font-medium text-900 mb-3">Forma de Pagamento</label>
+              <p-selectButton
+                [options]="pagamento"
+                optionLabel="label"
+                optionValue="value"
+                [(ngModel)]="selectedPagamento" />
+              <div class="col-12 flex p-2">
+                <span class="text-md font-normal text-gray-700 mt-1">
+                  * O Pagamento é realizado no momento da entrega.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="grid formgrid mt-5">
+            <div class="flex col-12 align-items-end justify-content-center text-right px-3">
+              <span class="text-2xl mr-2">
+                Total
+              </span>
+              <span class="text-2xl font-bold mr-2">
+                {{ getTotal() | currency:'BRL' }}
+              </span>
+            </div>
+          </div>
+          <div class="grid formgrid mt-6 px-2">
+            <p-button label="Concluir" severity="success" class="w-full" styleClass="w-full" />
+          </div>
+          <div class="col-12 flex justify-content-center p-2">
+            <span class="text-md mt-2">
+              <span class="text-md font-bold"><u>Você irá receber uma confirmação do pedido no número cadastrado.</u></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

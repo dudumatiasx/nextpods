@@ -1,41 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from 'src/models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
-  private apiUrl = 'https://localhost:5200/api/products';
+  private apiUrl = 'http://localhost:5059/api/produtos'; // Atualize com a URL da sua API
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}`);
+  getProducts(): Observable<any[]> { // Mudança aqui para garantir que retornamos um array
+    return this.http.get<any[]>(this.apiUrl);
   }
-
-  getProductById(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
-  }
-
-  createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${this.apiUrl}`, product);
-  }
-
-  updateProduct(product: Product): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${product.id}`, product);
-  }
-
-  deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
-  uploadImage(id: number, file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    return this.http.post<any>(`${this.apiUrl}/${id}/upload-image`, formData);
+  
+  getProductById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 }

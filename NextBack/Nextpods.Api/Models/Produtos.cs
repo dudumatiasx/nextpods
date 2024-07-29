@@ -21,7 +21,7 @@ namespace Nextpods.Models
 
     public class Sabor
     {
-        [BsonElement("sabor")]
+        [BsonElement("nome")]
         public string Nome { get; set; } = null!;
 
         [BsonElement("quantidade")]

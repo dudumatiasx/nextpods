@@ -16,8 +16,8 @@ export class AppComponent {
     this.primengConfig.ripple = true;
   }
 
-  showLogin(): boolean {
-    return this.router.url !== '/login';
+  showNav(): boolean {
+    return this.router.url !== '/checkout' && this.router.url !== '/pagamento';
   }
 
 }

@@ -1,3 +1,58 @@
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4a5568; /* Tailwind gray-700 */
+}
+
+.details {
+  font-size: 1rem;
+  color: #4a5568; /* Tailwind gray-700 */
+}
+
+.price {
+  font-size: 1rem;
+  color: #38a169; /* Tailwind green-500 */
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.action {
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .responsive-grid {
+    justify-content: start;
+  }
+
+  .card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .info {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
 .grid {
   justify-content: center;
 }
@@ -7,12 +62,21 @@
   border: none;
   padding: 2rem;
   border-radius: 12px;
+  position: relative;
+  overflow: hidden;
 }
+
 
 ::ng-deep .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
   color: #ffffff;
   background: #1d1d1d;
   border:  #1d1d1d;
+}
+
+::ng-deep .p-button.p-button-secondary2 {
+  color: #000000;
+  background: #ffffff;
+  border: 1px solid #ced4da;
 }
 
 @keyframes fadeInUp {
@@ -122,11 +186,6 @@
   animation: fadeIn both;
   animation-timeline: view();
   animation-range: entry 70% cover 35%;
-}
-
-.card {
-  position: relative;
-  overflow: hidden;
 }
 
 .video-card {
